@@ -22,6 +22,7 @@ export default {
   },
   methods: {
     async save() {
+      console.log('save')
       const res = await this.$http.post('categories', this.model)
       this.$router.push('/categories/list')
       this.$message({

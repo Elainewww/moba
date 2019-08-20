@@ -6,5 +6,9 @@ module.exports = app => {
     const model = await Category.create(req.body)
     res.send(model) //发回客户端让客户端知道完成了
   })
-  app.use('./admin/api', router)
+  router.get('/categories', async(req, res) => {
+    const items = await Category.find().limit(10)
+    res.send(items)
+  })
+  app.use('/admin/api', router)
 }
