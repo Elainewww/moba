@@ -15,6 +15,7 @@ export default new Router({
       component: Main,
       children: [
         { path: '/categories/create', component: CategoryEdit },
+        { path: '/categories/edit/:id', component: CategoryEdit, props:true },//两个不同地址使用同一个页面组件
         { path: '/categories/list', component: CategoryList }
       ]
     },
