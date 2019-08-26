@@ -17,7 +17,8 @@ module.exports = app => {
     })
   })
   router.get('/categories', async(req, res) => {
-    const items = await Category.find().limit(10)
+    const items = await Category.find().populate('parent').limit(10) //populate关联取出
+    //加了populate以后，取出的parent变成一个对象，而不仅是一个字段
     res.send(items)
   })
   router.get('/categories/:id', async(req, res) => {
