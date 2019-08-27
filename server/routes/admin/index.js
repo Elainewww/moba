@@ -13,7 +13,7 @@ module.exports = app => {
     res.send(model)
   })
   router.delete('/:id', async(req, res) => {
-    await req.Model.findByIdAndDelete(req.params.id, req.body) //通过id找，然后把body更新掉
+    await req.Model.findByIdAndDelete(req.params.id) //通过id找，然后把body更新掉
     res.send({
       success: true
     })
@@ -36,5 +36,14 @@ module.exports = app => {
     req.Model = require(`../../models/${modelName}`)
     next()
   }, router)
+
+  const multer = require('multer')
+  const upload = multer({ dest: __dirname + '/../../uploads' }) //dirname绝对地址,当前文件所在文件夹
+  app.post('/admin/api/upload', upload.single('file'), async(req, res) => {
+    const file = req.file
+    file.url = `http://localhost:3000/uploads/${file.filename}`
+    res.send(file) //express里没有req.file的，用了multer后将file附到req上了
+  })
+
 }
 //后端接口
