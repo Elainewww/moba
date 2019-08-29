@@ -6,6 +6,8 @@ import CategoryEdit from './views/CategoryEdit.vue'
 import CategoryList from './views/CategoryList.vue'
 import ItemEdit from './views/ItemEdit.vue'
 import ItemList from './views/ItemList.vue'
+import HeroEdit from './views/HeroEdit.vue'
+import HeroList from './views/HeroList.vue'
 
 Vue.use(Router)
 
@@ -22,7 +24,11 @@ export default new Router({
 
         { path: '/items/create', component: ItemEdit },
         { path: '/items/edit/:id', component: ItemEdit, props:true },//两个不同地址使用同一个页面组件
-        { path: '/items/list', component: ItemList }
+        { path: '/items/list', component: ItemList },
+
+        { path: '/heroes/create', component: HeroEdit },
+        { path: '/heroes/edit/:id', component: HeroEdit, props:true },//两个不同地址使用同一个页面组件
+        { path: '/heroes/list', component: HeroList },
       ]
     },
   ]
