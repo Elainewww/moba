@@ -23,7 +23,7 @@ const schema = new mongoose.Schema({
   battleTips: { type: String },
   teamTips: { type: String },
   partners: [{
-    hero: { ype: mongoose.SchemaTypes.ObjectId, ref: 'Hero' },
+    hero: { type: mongoose.SchemaTypes.ObjectId, ref: 'Hero' },
     description: { type: String }
   }],
 })
