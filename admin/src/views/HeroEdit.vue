@@ -35,7 +35,7 @@
           <el-form-item label="难度">
             <el-rate style="margin-top: 0.6rem" :max="9" show-score v-model="model.scores.difficult"></el-rate>
           </el-form-item>
-          <el-form-item label="技能">
+          <el-form-item label="技�?>
             <el-rate style="margin-top: 0.6rem" :max="9" show-score v-model="model.scores.skills"></el-rate>
           </el-form-item>
           <el-form-item label="攻击">
@@ -65,11 +65,11 @@
             </el-select>
           </el-form-item>
           
-          <el-form-item label="使用技巧">
+          <el-form-item label="使用技�?>
             <el-input type="textarea" v-model="model.usageTips">
             </el-input>
           </el-form-item>
-          <el-form-item label="对抗技巧">
+          <el-form-item label="对抗技�?>
             <el-input type="textarea" v-model="model.battleTips">
             </el-input>
           </el-form-item>
@@ -78,9 +78,9 @@
             </el-input>
           </el-form-item>
         </el-tab-pane>
-        <el-tab-pane label="技能" name="skills">
+        <el-tab-pane label="技�? name="skills">
           <el-button size="small" @click="model.skills.push({})">
-            <i class="el-icon-plus"></i>添加技能
+            <i class="el-icon-plus"></i>添加技�?
           </el-button>
           <el-row type="flex" style="flex-wrap: wrap">
             <el-col
@@ -107,7 +107,7 @@
               <el-form-item label="描述">
                 <el-input v-model="item.description" type="textarea"></el-input>
               </el-form-item>
-              <el-form-item label="小提示">
+              <el-form-item label="小提�?>
                 <el-input v-model="item.tips" type="textarea"></el-input>
               </el-form-item>
               <el-form-item>
@@ -151,7 +151,7 @@ export default {
   },
   methods: {
     afterUpload(res) {
-      this.model.avatar = res.url //在data里把属性定义好了的话就可以直接普通赋值
+      this.model.avatar = res.url //在data里把属性定义好了的话就可以直接普通赋�?
     },
     async save() {
       let res;
@@ -170,7 +170,7 @@ export default {
       const res = await this.$http.get(`rest/heroes/${this.id}`);
       this.model = Object.assign({}, this.model, res.data);
       //this.model先放到空对象，再把res.data的值放进去，添加而不是完全替代，model+data
-      // this.model = res.data; 会覆盖掉scores，所以采用上面那种方式赋值
+      // this.model = res.data; 会覆盖掉scores，所以采用上面那种方式赋�?
     },
     async fetchCategories() {
       const res = await this.$http.get(`rest/categories`);
@@ -189,28 +189,3 @@ export default {
 }
 </script>
 
-<style>
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 5rem;
-    height: 5rem;
-    line-height: 5rem;
-    text-align: center;
-  }
-  .avatar {
-    width: 5rem;
-    height: 5rem;
-    display: block;
-  }
-</style>
