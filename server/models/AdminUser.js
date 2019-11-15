@@ -4,8 +4,9 @@ const schema = new mongoose.Schema({
   username: { type: String },
   password: { 
     type: String,
+    select: false,
     set(val) { //安装了bcrypt,用于加密
-      return require('bcrypt').hashSync(val, 10) //生成密码散列值,散列指数一般10-12
+      return require('bcrypt').hashSync(val, 10) //生成密码散列�?散列指数一�?0-12
     }
   },  
 })

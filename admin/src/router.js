@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Login from './views/Login.vue'
 import Main from './views/Main.vue'
 import CategoryEdit from './views/CategoryEdit.vue'
 import CategoryList from './views/CategoryList.vue'
@@ -17,8 +17,11 @@ import AdminUserList from './views/AdminUserList.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
+    {
+      path: '/login', name: 'login', component: Login, meta: { isPublic: true }
+    },
     {
       path: '/',
       name: 'main',
@@ -45,9 +48,20 @@ export default new Router({
         { path: '/ads/list', component: AdList },
   
         { path: '/admin_users/create', component: AdminUserEdit },
-        { path: '/admin_users/edit/:id', component: AdminUserEdit, props:true },        { path: '/admin_users/list', component: AdminUserList },
+        { path: '/admin_users/edit/:id', component: AdminUserEdit, props:true },//两个不同地址使用同一个页面组�
+        { path: '/admin_users/list', component: AdminUserList },
   
       ]
     },
   ]
 })
+//每次切换路由执行 客户端访问限�
+router.beforeEach((to, from, next) => {
+  if(!to.meta.isPublic && !localStorage.token) {
+  //不是公开访问页面且用户token不存在就跳转到登录页
+    return next('/login')
+  }
+  //否则正常进入next
+  next()
+})
+export default router
